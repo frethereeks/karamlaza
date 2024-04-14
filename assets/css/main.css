@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    text-decoration: none !important;
+    transition: all .35s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+}
+
+html, body {
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+@layer components{
+    .btn-gradient{
+        @apply bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400;
+    }
+}
