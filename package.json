@@ -22,6 +22,7 @@
     "vue3-carousel": "^0.3.3"
   },
   "devDependencies": {
+    "@iconify/tailwind": "^0.1.4",
     "@nuxtjs/supabase": "^1.2.0",
     "@nuxtjs/tailwindcss": "^6.11.4",
     "autoprefixer": "^10.4.19",

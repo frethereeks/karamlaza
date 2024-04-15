@@ -1,7 +1,7 @@
 // import {resolve} from 'path'
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: { enabled: false },
+  devtools: { enabled: true },
   alias: {
     assets: "/<rootDir>/assets"
   },
@@ -10,7 +10,8 @@ export default defineNuxtConfig({
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // "@nuxtjs/supabase", 
-    "@nuxtjs/tailwindcss"
+    "@nuxtjs/tailwindcss",
+    'nuxt-icon',
   ],
   // Tailwind CSS
   postcss: {
