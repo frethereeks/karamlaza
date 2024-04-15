@@ -1,14 +1,14 @@
 <template>
     <main class="flex-1 flex flex-col">
         <BreadCrumb :extra="false" :key="8250698" />
-        <section class="py-20 md:py-32 px-4 relative bg-backdrop">
-            <div class="container mx-auto flex flex-col lg:flex-row-reverse gap-8 lg:gap-12">
-                <aside class="flex-1 min-h-64 max-h-24 relative">
+        <section class="py-20 md:py-20 px-4 relative bg-backdrop">
+            <div class="container mx-auto flex flex-col lg:flex-row gap-8 lg:gap-12">
+                <aside class="flex-1 min-h-64 max-h-24 md:max-h-full relative">
                     <img src="@/assets/images/willow_lounge_chair.jpg" alt="willow_lounge_chair"
                         class="h-full w-full object-cover rounded-sm absolute left-0 top-0">
                 </aside>
-                <aside class="flex-1 min-h-64 relative">
-                    <form action="" class="flex-1 flex flex-col gap-5 md:gap-8 w-full md:max-w-xl lg:max-w-md mx-auto">
+                <aside class="flex-1 min-h-64 relative py-10">
+                    <form action="" class="flex-1 flex flex-col gap-5 md:gap-8 w-full md:max-w-xl mx-auto">
                         <div class="flex-1 flex flex-col justify-center md:max-w-xl mx-auto text-center">
                             <h2 class="text-2xl md:text-3xl text-dark font-semibold font-serif">Reach Out to Us
                             </h2>
@@ -46,8 +46,7 @@
                                         class="flex-1 outline-none text-secondary text-sm md:text-base bg-transparent placeholder:text-secondary/60 placeholder:text-sm"></textarea>
                                 </div>
                             </div>
-                            <button type="submit"
-                                class="overflow-hidden relative before:bg-primary before:absolute before:z-0 before:top-0 before:left-0 before:w-full before:h-full hover:before:scale-0 before:scale-100 before:transition-all before:duration-300 before:origin-bottom-left text-backdrop hover:text-primary text-sm md:text-base py-2 px-6 md:px-8 border border-solid border-primary w-full cursor-pointer rounded-sm"> <span class="relative">Send</span></button>
+                            <PrimaryButton type="submit">Send</PrimaryButton>
                         </div>
                     </form>
                 </aside>
