@@ -38,7 +38,7 @@
                                 </div>
                             </div>
                             <div class="flex flex-col text-secondary">
-                                <label for="message" class="text-secondary text-sm md:text-base">Email Address</label>
+                                <label for="message" class="text-secondary text-sm md:text-base">Message</label>
                                 <div
                                     class="flex-1 flex items-center gap-3 border-b-[1.5px] border-secondary/60 hover:border-primary valid:border-primary py-2 px-4 relative w-full">
                                     <textarea name="message" id="message" cols="30" rows="10" v-model="message"
