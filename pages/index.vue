@@ -23,7 +23,7 @@
     <section class="bg-backrop py-20 px-4">
       <div class="container mx-auto flex flex-col gap-6 lg:gap-10">
         <div class="flex-1 flex flex-col justify-center gap-2 md:max-w-xl mx-auto text-center">
-          <h2 class="text-xl md:text-2xl text-secondary font-semibold font-serif">Our Top Categories</h2>
+          <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Our Top Categories</h2>
           <p style="line-height: 2" class="text-sm md:text-base text-dark/80 font-normal leading-loose font-sans">
             Karamlaza
             provides some top quality, top-drawer state-of-the-art products which we hope will tug at your interest.
