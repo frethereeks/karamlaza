@@ -1,28 +1,22 @@
 <template>
-    <main class="flex-1 flex flex-col">
-        <BreadCrumb :extra="false" :key="8250698" />
-        <section class="py-20 md:py-32 px-4 relative bg-backdrop">
-            <div class="container mx-auto flex flex-col lg:flex-row-reverse gap-8 lg:gap-12">
-
-            </div>
-        </section>
-
-    </main>
+    <div>
+        <BreadCrumb :extra="['/blog', 'Blog', $route.params.slug]" :key="8250698" />
+        <h3>Welcome to {{ $route.params.slug }}</h3>
+    </div>
 </template>
 
 <script lang="ts" setup>
-    definePageMeta({
-        name: "Blog"
-    })
     const route = useRoute();
+    const router = useRouter();
+    // console.log({route, router})
     useSeoMeta({
-        title: `Karamlaza :: Blog`,
+        title: `Karamlaza :: ${route.params.slug.toString().replaceAll("-", " ").toUpperCase()}`,
         description: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
-        ogTitle: `Karamlaza :: Blog`,
+        ogTitle: `Karamlaza :: ${route.params.slug.toString().replaceAll("-", " ").toUpperCase()}`,
         ogDescription: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
         ogImage: '/willow_patio_chair.jpg',
-        ogUrl: `https://karamlaza.vercel.app/shop`,
-        twitterTitle: `Karamlaza :: Blog`,
+        ogUrl: `https://karamlaza.vercel.app/shop/${route.params.slug}`,
+        twitterTitle: `Karamlaza :: ${route.params.slug.toString().replaceAll("-", " ").toUpperCase()}`,
         twitterDescription: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
         twitterImage: '/willow_patio_chair.jpg',
         twitterCard: 'summary'

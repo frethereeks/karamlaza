@@ -18,6 +18,9 @@ module.exports = {
         // grey: "#eff0f2",
         grey: "#dfe4e7",
         'light-grey': "#fafafa"
+      },
+      screens: {
+        xs: "500px",
       }
     },
   },

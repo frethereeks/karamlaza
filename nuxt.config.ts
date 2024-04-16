@@ -11,6 +11,7 @@ export default defineNuxtConfig({
   modules: [
     // "@nuxtjs/supabase", 
     "@nuxtjs/tailwindcss",
+    // "@morpheme/alert",
     'nuxt-icon',
   ],
   // Tailwind CSS

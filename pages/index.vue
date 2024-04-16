@@ -7,7 +7,7 @@
             class="object-cover min-h-40 w-full">
         </div>
         <div class="flex-1 flex min-h-40">
-          <div class="flex-1 flex flex-col justify-center gap-4 md:max-w-lg">
+          <div class="flex-1 flex flex-col justify-center gap-4 md:max-w-xl">
             <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Furnish your Dreams Timeless Living
               for Inspired Living</h2>
             <p style="line-height: 2"
@@ -53,11 +53,48 @@
 
       </aside>
     </section>
+    <section class="bg-primary/30 py-20 px-4">
+      <div class="container mx-auto relative flex flex-col sm:flex-row gap-4 lg:gap-8">
+        <div class="flex-1 relative rounded-sm overflow-hidden min-h-80 md:min-h-96">
+          <img src="@/assets/images/carravio_night_chair.jpg" alt="Carravio Night Chair"
+            class="absolute top-0 left-0 w-full h-full object-cover sm:object-fill md:object-cover object-bottom lg:object-bottom">
+        </div>
+        <div class="flex-1 flex flex-col gap-3 py-10">
+          <p
+            class="text-xs lg:text-sm uppercase relative pl-8 before:absolute before:w-6 before:h-[.8px] before:bg-secondary before:left-0 before:top-1/2 before:-translate-y-1/2">
+            Our Approach</p>
+          <h3 class="text-2xl md:text-3xl text-secondary font-semibold font-serif capitalize -translate-y-2">Interior
+            Design</h3>
+          <aside v-for="approach in approachList" :key="approach.id"
+            class="pt-5 flex flex-col gap-2 text-justify text-dark">
+            <h4 class="text-lg lg:text-xl font-medium">{{ approach.title }}</h4>
+            <p class="text-sm lg:text-[.95rem] opacity-85">{{ approach.text }}</p>
+          </aside>
+        </div>
+      </div>
+    </section>
   </main>
 </template>
 
 <script lang="ts" setup>
-definePageMeta({
+  const approachList = ref<ApproachProp[]>([
+    {
+      id: "8025620",
+      title: "Individuality",
+      text: "We create all furniture indivually according to your needs. We take into account all the wishes and features, which makes our design always looks unique."
+    },
+    {
+      id: "8025621",
+      title: "High quality",
+      text: "We create all furniture indivually according to your needs. We take into account all the wishes and features, which makes our design always looks unique."
+    },
+    {
+      id: "8025622",
+      title: "Stylish design",
+      text: "We create all furniture indivually according to your needs. We take into account all the wishes and features, which makes our design always looks unique."
+    },
+  ])
+  definePageMeta({
     name: "Home"
-})
+  })
 </script>

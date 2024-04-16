@@ -26,7 +26,14 @@
                                 class="flex-1 outline-none text-secondary text-sm md:text-base bg-transparent placeholder:text-secondary placeholder:text-sm">
                             <button type="submit"
                                 class="w-8 h-8 bg-transparent hover:-rotate-12 cursor-pointer rounded-sm flex justify-center items-center">
-                                <Icon name="ion:search-outline" size="20" />
+                                <!-- <Icon name="ion:search-outline" size="20" /> -->
+                                <svg xmlns="http://www.w3.org/2000/svg" width="1.2em" height="1.2em"
+                                    viewBox="0 0 512 512">
+                                    <path fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"
+                                        d="M221.09 64a157.09 157.09 0 1 0 157.09 157.09A157.1 157.1 0 0 0 221.09 64Z" />
+                                    <path fill="none" stroke="currentColor" stroke-linecap="round"
+                                        stroke-miterlimit="10" stroke-width="32" d="M338.29 338.29L448 448" />
+                                </svg>
                             </button>
                         </div>
                     </form>
@@ -73,9 +80,9 @@
                         </svg>
                     </NuxtLink>
                     <div @click="navShow = !navShow"
-                        class="w-8 h-8 bg-secondary text-white hover:bg-backdrop cursor-pointer rounded-sm flex justify-center items-center md:hidden">
+                        class="w-8 h-8 text-secondary hover:bg-backdrop cursor-pointer rounded-sm flex justify-center items-center md:hidden">
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 512 512">
-                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
+                            <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="15"
                                 stroke-width="32" d="M80 160h352M80 256h352M80 352h352" />
                         </svg>
                     </div>
@@ -113,10 +120,16 @@
             url: "/contact",
         },
     ])
-    const router = useRouter()
+    const route = useRoute()
+    const currentPage = ref(route.params)
     const handleSubmit = async () => {
         const searchPhrase = searchTerm.value
         console.log({ searchPhrase })
     }
+
+    watch([currentPage.value], () => {
+        searchShow.value = false
+        navShow.value = false
+    })
 
 </script>
