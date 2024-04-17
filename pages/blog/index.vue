@@ -20,7 +20,8 @@
                                 class="absolute left-0 top-0 w-full h-full object-cover group-hover:-rotate-2 group-hover:scale-105 group-hover:grayscale-[50%]">
                         </figure>
                         <div class="flex-1 flex flex-col gap-2 px-2">
-                            <p class="text-[.65rem] md:text-[.7rem] text-dark/40 font-normal uppercase tracking-wider">{{
+                            <p class="text-[.65rem] md:text-[.7rem] text-dark/40 font-normal uppercase tracking-wider">
+                                {{
                                 blog.category
                                 }}</p>
                             <h3
@@ -34,8 +35,22 @@
                     </NuxtLink>
                 </div>
             </div>
-        </section>
+            <div class="container mx-auto p-4 flex justify-center items-center gap-2">
+                <button
+                    class="w-5 h-5 md:w-7 md:h-7 flex justify-center items-center border border-grey bg-gray hover:bg-dark text-dark/60 hover:text-backdrop text-xs sm:text-sm rounded-md cursor-pointer">
+                    <Icon name="ion:chevron-back" size="15" />
+                </button>
+                <button v-for="num in 8"
+                    class="w-6 h-6 md:w-8 md:h-8 flex justify-center items-center border border-grey text-xs sm:text-sm rounded-md cursor-pointer"
+                    :class="num == 1 ? 'hover:bg-gray bg-dark hover:text-dark/60 text-backdrop' : 'bg-gray hover:bg-dark text-dark/60 hover:text-backdrop'">{{
+                    num }}</button>
+                <button
+                    class="w-5 h-5 md:w-7 md:h-7 flex justify-center items-center border border-grey bg-gray hover:bg-dark text-dark/60 hover:text-backdrop text-xs sm:text-sm rounded-md cursor-pointer">
+                    <Icon name="ion:chevron-forward" size="15" />
+                </button>
 
+            </div>
+        </section>
     </main>
 </template>
 

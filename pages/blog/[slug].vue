@@ -7,7 +7,6 @@
 
 <script lang="ts" setup>
     const route = useRoute();
-    const router = useRouter();
     // console.log({route, router})
     useSeoMeta({
         title: `Karamlaza :: ${route.params.slug.toString().replaceAll("-", " ").toUpperCase()}`,
