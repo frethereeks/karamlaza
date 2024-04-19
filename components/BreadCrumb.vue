@@ -37,6 +37,4 @@
 
 <script lang="ts" setup>
     defineProps(['extra'])
-    const router = useRouter();
-    
 </script>

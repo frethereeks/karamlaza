@@ -19,3 +19,14 @@ type BlogItemProp = {
         image: string
     },
 }
+
+type ProductProps = {
+    id: string
+    title: string
+    price: number
+    featured: boolean
+    category: string
+    description: string
+    inventory: number
+    image: string
+}

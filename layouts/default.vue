@@ -18,7 +18,7 @@
                 </nav>
                 <div class="flex items-center sm:gap-2 text-secondary">
                     <form @submit.prevent="handleSubmit" @click.stop="searchShow = !searchShow" v-show="searchShow"
-                        class="flex-1 fixed z-50 w-full h-screen top-0 left-0 bg-backdrop/70 backdrop-blur-sm flex-col py-10 md:py-20">
+                        class="flex-1 fixed z-50 w-full h-screen top-0 left-0 bg-backdrop/70 backdrop-blur-sm flex-col py-10 md:py-20 px-4">
                         <div @click.stop="searchShow = true"
                             class="flex items-center gap-3 border-b-[1.5px] border-secondary hover:border-secondary active:border-secondary valid:border-secondary py-2 px-4 relative max-w-md mx-auto">
                             <input type="search" name="searchTerm" id="searchTerm" v-model="searchTerm"
@@ -90,7 +90,17 @@
             </div>
         </header>
         <slot />
-        <footer class="bg-primary text-white p-4"></footer>
+        <footer class="bg-primary text-white p-4">
+            <div class="container mx-auto flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
+                <small class="text-sm md:text-base">&copy;{{ new Date().getFullYear() }}. Karamlaza. All rights reserved.</small>
+                <div class="flex gap-2 items-center">
+                    <NuxtLink target="_blank" rel="noopener noreferrer" to="https://www.instagram.com/karamlaza" class="hover:bg-backdrop/50 text-backdrop hover:text-secondary text-sm md:text-base w-6 h-6 rounded-sm flex justify-center items-center"><Icon name="ion:logo-instagram" /></NuxtLink>
+                    <NuxtLink target="_blank" rel="noopener noreferrer" to="https://www.facebook.com/karamlaza" class="hover:bg-backdrop/50 text-backdrop hover:text-secondary text-sm md:text-base w-6 h-6 rounded-sm flex justify-center items-center"><Icon name="ion:logo-facebook" /></NuxtLink>
+                    <NuxtLink target="_blank" rel="noopener noreferrer" to="https://www.twitter.com/karamlaza" class="hover:bg-backdrop/50 text-backdrop hover:text-secondary text-sm md:text-base w-6 h-6 rounded-sm flex justify-center items-center"><Icon name="ion:logo-twitter" /></NuxtLink>
+                    <NuxtLink target="_blank" rel="noopener noreferrer" to="https://www.whatsapp.com/karamlaza" class="hover:bg-backdrop/50 text-backdrop hover:text-secondary text-sm md:text-base w-6 h-6 rounded-sm flex justify-center items-center"><Icon name="ion:logo-whatsapp" /></NuxtLink>
+                </div>
+            </div>
+        </footer>
     </main>
 
 </template>

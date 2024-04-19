@@ -1,17 +1,19 @@
 <template>
   <main class="flex-1 flex flex-col">
-    <section class="py-20 px-4 relative bg-grey">
+    <section class="py-10 sm:py-20 px-4 relative bg-grey">
       <div class="container mx-auto flex flex-col lg:flex-row-reverse gap-8 lg:gap-12">
         <div class="flex-1 min-h-40">
           <img src="@/assets/images/carraviggio_curved_chair.jpg" alt="essence_accent_chair"
-            class="object-cover min-h-40 w-full">
+            class="object-cover min-h-40 w-full rounded-sm">
         </div>
         <div class="flex-1 flex min-h-40">
-          <div class="flex-1 flex flex-col justify-center gap-4 md:max-w-xl">
-            <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Furnish your Dreams Timeless Living
+          <div class="flex-1 flex flex-col justify-center gap-4 md:max-w-2xl">
+            <h2 class="text-2xl md:text-3xl xl:text-4xl text-secondary font-semibold font-serif">Furnish your Dreams
+              Timeless Living
               for Inspired Living</h2>
             <p style="line-height: 2"
-              class="text-sm md:text-base text-dark/80 text-justify font-normal leading-loose font-sans">At Karamlaza,
+              class="text-sm md:text-base lg:text-lg text-dark/80 text-justify font-normal leading-loose font-sans">At
+              Karamlaza,
               we provide you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made
               artifacts to beautify the interior of your edifice all of which can be delivered to your house just from
               one simple order</p>
@@ -20,7 +22,7 @@
         </div>
       </div>
     </section>
-    <section class="bg-backrop py-20 px-4">
+    <section class="bg-backrop py-20 sm:py-32 px-4">
       <div class="container mx-auto flex flex-col gap-6 lg:gap-10">
         <div class="flex-1 flex flex-col justify-center gap-2 md:max-w-xl mx-auto text-center">
           <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Our Top Categories</h2>
@@ -53,7 +55,7 @@
 
       </aside>
     </section>
-    <section class="bg-primary/30 py-20 px-4">
+    <section class="bg-primary/30 py-20 sm:py-32 px-4">
       <div class="container mx-auto relative flex flex-col sm:flex-row gap-4 lg:gap-8">
         <div class="flex-1 relative rounded-sm overflow-hidden min-h-80 md:min-h-96">
           <img src="@/assets/images/carravio_night_chair.jpg" alt="Carravio Night Chair"
@@ -73,10 +75,29 @@
         </div>
       </div>
     </section>
+    <section class="bg-backrop py-20 sm:py-32 px-4">
+      <div class="container mx-auto flex flex-col gap-6 lg:gap-10">
+        <div class="flex-1 flex flex-col justify-center gap-2 md:max-w-xl mx-auto text-center">
+          <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Featured Products</h2>
+          <p style="line-height: 2" class="text-sm md:text-base text-dark/80 font-normal leading-loose font-sans">
+            Below are the list of the products we believe would awaken your inquisition and appeal to your aesthetic
+            conception of quality</p>
+        </div>
+        <!-- <div class="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4"> -->
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-2 md:gap-4">
+          <ProductCard v-for="product in products" :key="product.id" :id="product.id" :title="product.title" :image="product.image" :category="product.category" :price="product.price" :description="product.description" />
+        </div>
+      </div>
+      <aside class="bg-light-grey flex flex-col relative hover:-translate-y-3 overflow-hidden">
+      </aside>
+    </section>
   </main>
 </template>
 
 <script lang="ts" setup>
+
+  const products = useProductState().value.filter(el => el.featured === true).slice(0,4)
+  
   const approachList = ref<ApproachProp[]>([
     {
       id: "8025620",
