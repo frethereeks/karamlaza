@@ -3,7 +3,7 @@
         class="productCard relative bg-gray flex flex-col group my-4 h-full">
         <div class="relative flex-shrink-0 flex-1 h-24 sm:h-32 md:h-56 overflow-hidden">
             <img :src="`/images/${image}`" :alt="title"
-                class="object-cover object-center h-full w-full absolute left-0 top-0">
+                class="object-cover object-bottom h-full w-full absolute left-0 top-0">
             <div
                 class="relative w-full h-full bg-gradient-to-t from-slate-600 via-transparent to-transparent p-2 sm:p-4 flex flex-col justify-between left-0">
                 <span

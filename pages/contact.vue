@@ -10,7 +10,7 @@
                 <aside class="flex-1 min-h-64 relative py-10">
                     <form @submit.prevent="handleSubmit" class="flex-1 flex flex-col gap-5 md:gap-8 w-full md:max-w-xl mx-auto">
                         <div class="flex-1 flex flex-col justify-center md:max-w-xl mx-auto text-center">
-                            <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Reach Out to Us
+                            <h2 data-maz-aos="scale-out" class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Reach Out to Us
                             </h2>
                             <p style="line-height: 2"
                                 class="text-sm md:text-base text-dark/80 font-normal leading-loose font-sans">
@@ -57,10 +57,11 @@
 </template>
 
 <script lang="ts" setup>
+    const toast = useToast()
     const fullname = ref<string>(""), email = ref<string>(""), message = ref<string>("")
     const handleSubmit = async () => {
         const payload = { fullname, email, message }
-        
+        toast.message("Sending your message...")
     }
 
     definePageMeta({
@@ -71,11 +72,11 @@
         description: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
         ogTitle: `Karamlaza :: Contact`,
         ogDescription: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
-        ogImage: '/carravio_night_chair.jpg',
+        ogImage: '/images/willow_lounge_chair.jpg',
         ogUrl: `https://karamlaza.vercel.app/contact`,
         twitterTitle: `Karamlaza :: Contact`,
         twitterDescription: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
-        twitterImage: '/carravio_night_chair.jpg',
+        twitterImage: '/images/willow_lounge_chair.jpg',
         twitterCard: 'summary'
     })
 

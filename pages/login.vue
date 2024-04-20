@@ -21,7 +21,8 @@
                 </aside>
                 <aside class="flex-1 min-h-64 relative py-10">
                     <form v-show="showLoginForm" @submit.prevent="handleSubmit"
-                        class="flex-1 flex-col gap-5 md:gap-8 w-full md:max-w-xl mx-auto" :class="showLoginForm ? 'flex' : 'hidden'">
+                        class="flex-1 flex-col gap-5 md:gap-8 w-full md:max-w-xl mx-auto"
+                        :class="showLoginForm ? 'flex' : 'hidden'">
                         <div class="flex-1 flex flex-col justify-center md:max-w-xl mx-auto text-center">
                             <h2 class="text-2xl md:text-3xl text-primary font-semibold font-serif">Let's go make
                                 Purchases</h2>
@@ -50,25 +51,31 @@
                                         class="flex-1 outline-none text-secondary text-sm md:text-base bg-transparent border-transparent placeholder:text-secondary/60 placeholder:text-sm pr-3.5">
                                     <span class="opacity-70 cursor-pointer absolute top-1/2 -translate-y-1/2 right-2"
                                         @click="showPassword = !showPassword">
-                                        <Icon :name="showPassword ? 'ion:eye-off-outline' : 'ion:eye-outline'"
+                                        <Icon :name="showPassword ? 'ion:eye-outline' : 'ion:eye-off-outline'"
                                             size="16" />
                                     </span>
                                 </div>
                             </div>
-                            <button type="button" @click="showLoginForm = false" class="-my-2 text-xs md:text-sm text-primary">Forgot
+                            <button type="button" @click="showLoginForm = false"
+                                class="-my-2.5 text-xs md:text-sm text-primary w-full text-left">Forgot your
                                 Password? Reset</button>
                             <PrimaryButton type="submit"
                                 class="before:bg-secondary uppercase border-secondary hover:text-secondary">Grant Access
                             </PrimaryButton>
+                            <NuxtLink to="/signup"
+                                class="-my-2 text-xs md:text-sm text-dark/80 hover:text-dark/60 text-center">Don't have
+                                an account? Sign up already</NuxtLink>
                         </div>
                     </form>
                     <form @submit.prevent="handlePasswordReset"
                         class="flex-1 flex flex-col gap-5 md:gap-8 w-full md:max-w-xl mx-auto"
                         :class="showLoginForm ? 'hidden' : 'flex'">
                         <div class="flex-1 flex flex-col justify-center md:max-w-xl mx-auto text-center">
-                            <h2 class="text-2xl md:text-3xl text-primary font-semibold font-serif">Need a Password Reset?</h2>
+                            <h2 class="text-2xl md:text-3xl text-primary font-semibold font-serif">Need a Password
+                                Reset?</h2>
                             <p style="line-height: 2"
-                                class="text-sm md:text-base text-dark/80 font-normal leading-loose font-sans">We've all been there. Enter your mail to get a reset link</p>
+                                class="text-sm md:text-base text-dark/80 font-normal leading-loose font-sans">We've all
+                                been there. Enter your mail to get a reset link</p>
                         </div>
                         <div class="flex-1 flex flex-col gap-4 border border-grey border-solid p-4 md:p-6 rounded-sm">
                             <div class="flex flex-col text-secondary">
@@ -76,14 +83,16 @@
                                 <div
                                     class="flex-1 flex items-center gap-3 border-b-[1.5px] border-primary/60 hover:border-primary valid:border-primary p-2 pr-4 relative w-full">
                                     <Icon name="ion:mail-open-outline" size="16" class="opacity-70" />
-                                    <input type="email" name="email" id="email" v-model="email"
+                                    <input type="email" name="resetEmail" id="resetEmail" v-model="resetEmail"
                                         placeholder="Youremail@mail.com*" required minlength="6"
                                         class="flex-1 outline-none text-secondary text-sm md:text-base bg-transparent placeholder:text-secondary/60 placeholder:text-sm">
                                 </div>
                             </div>
-                            <button type="button" @click="showLoginForm = true" class="-my-2 text-xs md:text-sm text-primary">Go back to the Login Page</button>
+                            <button type="button" @click="showLoginForm = true"
+                                class="-my-2 text-xs md:text-sm text-primary">Go back to the Login Page</button>
                             <PrimaryButton type="submit"
-                                class="before:bg-secondary uppercase border-secondary hover:text-secondary">Send Reset Link
+                                class="before:bg-secondary uppercase border-secondary hover:text-secondary">Send Reset
+                                Link
                             </PrimaryButton>
                         </div>
                     </form>
@@ -95,13 +104,14 @@
 </template>
 
 <script lang="ts" setup>
-    const password = ref<string>(""), email = ref<string>(""), showPassword = ref<boolean>(false), showLoginForm = ref<boolean>(true)
+    const toast = useToast()
+    const password = ref<string>(""), email = ref<string>(""), resetEmail = ref<string>(""), showPassword = ref<boolean>(false), showLoginForm = ref<boolean>(true)
     const handleSubmit = async () => {
         const payload = { password, email }
-
+        toast.success("Logging you in now...")
     }
     const handlePasswordReset = async () => {
-        
+        toast.success("Generating reset Link now...")
     }
 
     definePageMeta({
@@ -112,11 +122,11 @@
         description: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
         ogTitle: `Karamlaza :: Login`,
         ogDescription: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
-        ogImage: '/images/carraviggio_curved_chair.jpg',
+        ogImage: '/images/keegan_checks_chairs.jpg',
         ogUrl: `https://karamlaza.vercel.app/login`,
         twitterTitle: `Karamlaza :: Login`,
         twitterDescription: 'Karamlaza provides you with timeless and eternal, self-announcing touch of opulence, exclusive and custom-made artifacts to beautify the interior of your edifice all of which can be delivered to your house just from one simple order',
-        twitterImage: '/images/carraviggio_curved_chair.jpg',
+        twitterImage: '/images/keegan_checks_chairs.jpg',
         twitterCard: 'summary'
     })
 

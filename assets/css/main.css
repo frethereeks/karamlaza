@@ -18,4 +18,7 @@ html, body {
     .btn-gradient{
         @apply bg-gradient-to-br from-orange-600 via-orange-500 to-orange-400;
     }
+    .article p:first-child{
+        @apply first-letter:font-serif first-letter:text-secondary first-letter:text-4xl lg:first-letter:text-6xl;
+    }
 }

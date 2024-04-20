@@ -13,7 +13,21 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     // "@morpheme/alert",
     'nuxt-icon',
+    'maz-ui/nuxt',
   ],
+  mazUi: {
+    injectComponents: true,
+    injectCss: true,
+    injectAos: {
+      injectCss: true,
+    },
+    injectUseToast: true,
+    injectUseThemeHandler: true,
+    devtools: true,
+  },
+  runtimeConfig: {
+    // include the maz-ui
+  },
   // Tailwind CSS
   postcss: {
     plugins: {

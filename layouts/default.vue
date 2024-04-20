@@ -91,9 +91,9 @@
         </header>
         <slot />
         <footer class="bg-primary text-white p-4">
-            <div class="container mx-auto flex flex-col gap-4 md:flex-row md:justify-between md:items-center">
-                <small class="text-sm md:text-base">&copy;{{ new Date().getFullYear() }}. Karamlaza. All rights reserved.</small>
-                <div class="flex gap-2 items-center">
+            <div class="container mx-auto flex flex-col gap-4 xs:flex-row xs:justify-between xs:items-center">
+                <small class="text-sm xs:text-base text-center xs:text-left">&copy;{{ new Date().getFullYear() }}. Karamlaza. All rights reserved.</small>
+                <div class="flex gap-2 justify-center xs:justify-end items-center">
                     <NuxtLink target="_blank" rel="noopener noreferrer" to="https://www.instagram.com/karamlaza" class="hover:bg-backdrop/50 text-backdrop hover:text-secondary text-sm md:text-base w-6 h-6 rounded-sm flex justify-center items-center"><Icon name="ion:logo-instagram" /></NuxtLink>
                     <NuxtLink target="_blank" rel="noopener noreferrer" to="https://www.facebook.com/karamlaza" class="hover:bg-backdrop/50 text-backdrop hover:text-secondary text-sm md:text-base w-6 h-6 rounded-sm flex justify-center items-center"><Icon name="ion:logo-facebook" /></NuxtLink>
                     <NuxtLink target="_blank" rel="noopener noreferrer" to="https://www.twitter.com/karamlaza" class="hover:bg-backdrop/50 text-backdrop hover:text-secondary text-sm md:text-base w-6 h-6 rounded-sm flex justify-center items-center"><Icon name="ion:logo-twitter" /></NuxtLink>
@@ -130,15 +130,14 @@
             url: "/contact",
         },
     ])
-    const route = useRoute()
-    const currentPage = ref(route.params)
+    const route = useRoute() 
     const handleSubmit = async () => {
         const searchPhrase = searchTerm.value
         console.log({ searchPhrase })
     }
 
-    watch([currentPage.value], () => {
-        searchShow.value = false
+    watchEffect(() => {
+        route.params
         navShow.value = false
     })
 

@@ -33,27 +33,26 @@
         </div>
         <!-- <div class="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4"> -->
         <div class="grid grid-cols-2 md:grid-cols-3 auto-rows-[200px] md:auto-rows-[300px] gap-2 md:gap-4">
-          <div class="flex-1 min-h-40 overflow-hidden rounded-sm md:row-span-2">
+          <div class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm md:row-span-2">
             <img src="@/assets/images/nova_naving_sidetables.jpg" alt="essence_accent_chair"
-              class="object-cover object-left h-full w-full">
+              class="object-cover object-left h-full w-full relative">
           </div>
-          <div class="flex-1 min-h-40 overflow-hidden rounded-sm md:col-span-2">
+          <div class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm md:col-span-2">
             <img src="@/assets/images/large_lagoon_lounge.jpg" alt="essence_accent_chair"
-              class="object-cover object-center h-full w-full">
+              class="object-cover object-center h-full w-full relative">
           </div>
-          <div class="flex-1 min-h-40 overflow-hidden rounded-sm">
+          <div class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm">
             <img src="@/assets/images/lagoon_patio_chair.jpg" alt="essence_accent_chair"
-              class="object-cover object-center h-full w-full">
+              class="object-cover object-center h-full w-full relative">
           </div>
-          <div class="flex-1 min-h-40 overflow-hidden rounded-sm">
+          <div class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm">
             <img src="@/assets/images/white_accent_chair.jpg" alt="essence_accent_chair"
-              class="object-cover object-center h-full w-full">
+              class="object-cover object-center h-full w-full relative">
           </div>
         </div>
       </div>
-      <aside class="bg-light-grey flex flex-col relative hover:-translate-y-3 overflow-hidden">
-
-      </aside>
+      <!-- <aside class="bg-light-grey flex flex-col relative hover:-translate-y-3 overflow-hidden">
+      </aside> -->
     </section>
     <section class="bg-primary/30 py-20 sm:py-32 px-4">
       <div class="container mx-auto relative flex flex-col sm:flex-row gap-4 lg:gap-8">
@@ -85,7 +84,9 @@
         </div>
         <!-- <div class="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4"> -->
         <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-2 md:gap-4">
-          <ProductCard v-for="product in products" :key="product.id" :id="product.id" :title="product.title" :image="product.image" :category="product.category" :price="product.price" :description="product.description" />
+          <ProductCard v-for="product in products" :key="product.id" :id="product.id" :title="product.title"
+            :image="product.image" :category="product.category" :price="product.price"
+            :description="product.description" />
         </div>
       </div>
       <aside class="bg-light-grey flex flex-col relative hover:-translate-y-3 overflow-hidden">

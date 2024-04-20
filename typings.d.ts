@@ -11,7 +11,7 @@ type BlogItemProp = {
     images: string[],
     text: string,
     category: string,
-    createdAt: Date,
+    createdAt: Date | string,
     author?: {
         id: string
         firstname: string
