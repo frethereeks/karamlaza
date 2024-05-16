@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     // "@morpheme/alert",
     'nuxt-icon',
     'maz-ui/nuxt',
+    'nuxt-swiper',
   ],
   mazUi: {
     injectComponents: true,

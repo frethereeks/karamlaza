@@ -4,8 +4,8 @@
         <section class="py-20 md:py-20 px-4 relative bg-backdrop">
             <div class="container mx-auto flex flex-col lg:flex-row-reverse gap-8 lg:gap-4">
                 <aside class="flex-1 flex flex-col justify-between gap-6 max-h-40  md:min-h-64 lg:max-h-full relative">
-                            <img src="@/assets/images/moonlit_muse_chair.jpg" alt="nova_nest_armchair"
-                                class="h-full w-full object-cover object-bottom rounded-sm absolute left-0 top-0">
+                    <img src="@/assets/images/moonlit_muse_chair.jpg" alt="nova_nest_armchair"
+                        class="h-full w-full object-cover object-bottom rounded-sm absolute left-0 top-0">
                 </aside>
                 <aside class="flex-1 min-h-64 relative py-10">
                     <form @submit.prevent="handleSubmit"
@@ -81,7 +81,7 @@
                                 </div>
                             </div>
                             <label @click="acceptTerms = !acceptTerms"
-                                class="flex items-center gap-2 -my-1 text-sm md:text-base text-primary">
+                                class="flex items-center gap-2 -my-1 py-1 text-sm md:text-base text-primary">
                                 <div class="h-4 w-4 flex justify-center items-center rounded-sm overflow-hidden border border-solid"
                                     :class="acceptTerms ? 'border-secondary bg-secondary/80 text-white' : 'border-primary bg-grey/50 text-transparent'">
                                     <Icon name="ion:checkmark-done-sharp" size="10" />
@@ -92,7 +92,8 @@
                                 class="before:bg-secondary uppercase border-secondary hover:text-secondary font-semibold">
                                 Become a Member </PrimaryButton>
                             <NuxtLink to="/login"
-                                class="-my-2 text-xs md:text-sm text-dark/80 hover:text-dark/60 text-center">Already a
+                                class="-my-2 pt-1 pb-2 text-xs md:text-sm text-dark/80 hover:text-dark/60 text-center">
+                                Already a
                                 Member? Login</NuxtLink>
                         </div>
                     </form>

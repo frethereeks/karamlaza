@@ -57,14 +57,14 @@
                                 </div>
                             </div>
                             <button type="button" @click="showLoginForm = false"
-                                class="-my-2.5 text-xs md:text-sm text-primary w-full text-left">Forgot your
+                                class="-my-2.5 pt-1 pb-2 text-xs md:text-sm text-primary w-full text-left">Forgot your
                                 Password? Reset</button>
                             <PrimaryButton type="submit"
                                 class="before:bg-secondary uppercase border-secondary hover:text-secondary">Grant Access
                             </PrimaryButton>
                             <NuxtLink to="/signup"
-                                class="-my-2 text-xs md:text-sm text-dark/80 hover:text-dark/60 text-center">Don't have
-                                an account? Sign up already</NuxtLink>
+                                class="-mt-2 pt-1 pb-2 text-xs md:text-sm text-dark/80 hover:text-dark/60 text-center">
+                                Don't have an account? Sign up already</NuxtLink>
                         </div>
                     </form>
                     <form @submit.prevent="handlePasswordReset"
@@ -88,12 +88,13 @@
                                         class="flex-1 outline-none text-secondary text-sm md:text-base bg-transparent placeholder:text-secondary/60 placeholder:text-sm">
                                 </div>
                             </div>
-                            <button type="button" @click="showLoginForm = true"
-                                class="-my-2 text-xs md:text-sm text-primary">Go back to the Login Page</button>
                             <PrimaryButton type="submit"
                                 class="before:bg-secondary uppercase border-secondary hover:text-secondary">Send Reset
                                 Link
                             </PrimaryButton>
+                            <button type="button" @click="showLoginForm = true"
+                                class="-my-3.5 py-2 text-xs md:text-sm text-primary">Go back to the Login
+                                Page</button>
                         </div>
                     </form>
                 </aside>
@@ -107,8 +108,25 @@
     const toast = useToast()
     const password = ref<string>(""), email = ref<string>(""), resetEmail = ref<string>(""), showPassword = ref<boolean>(false), showLoginForm = ref<boolean>(true)
     const handleSubmit = async () => {
-        const payload = { password, email }
-        toast.success("Logging you in now...")
+        const payload = { password: password.value, email: email.value }
+        try {
+            // const data: {message?: string, user?: any[], error?: boolean | any} = await useFetch("/api/login", {
+            const { data, error, pending,  } = await $fetch("/api/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                // credentials: "include",
+                body: JSON.stringify(payload)
+            })
+            if (pending) toast.success("Logging you in now...")
+            if (error) throw error
+            else {
+                console.log({ pending, data })
+                toast.success(`Welcome Back. Please wait while we log you in`)
+            }
+        } catch (error) {
+            const response = error as {statusMessage: string,}
+            toast.error(`Something went wrong. ${response?.statusMessage}`)
+        }
     }
     const handlePasswordReset = async () => {
         toast.success("Generating reset Link now...")

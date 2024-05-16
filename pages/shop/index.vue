@@ -2,9 +2,11 @@
     <main class="flex-1 flex flex-col">
         <BreadCrumb :extra="false" :key="8250698" />
         <section class="bg-backrop py-20 sm:py-32 px-4">
-            <div class="container mx-auto flex flex-col gap-6 lg:gap-10">
+            <div class="container mx-auto flex flex-col gap-2 lg:gap-10">
                 <div class="flex-1 flex flex-col justify-center gap-2 md:max-w-xl mx-auto text-center">
-                    <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Our <span class="capitalize">{{ selectedCategory === "All" ? 'Products' : selectedCategory }}</span> Catalogue</h2>
+                    <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Our <span
+                            class="capitalize">{{ selectedCategory === "All" ? 'Products' : selectedCategory }}</span>
+                        Catalogue</h2>
                     <p style="line-height: 2"
                         class="text-sm md:text-base text-dark/80 font-normal leading-loose font-sans">
                         Explore our stream of incredible and amazing product showcase, guaranteed to blow your mind</p>
@@ -20,7 +22,16 @@
                         @click="selectedCategory = category">{{
                         category }}</button>
                 </div>
-                <!-- <div class="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4"> -->
+                <div class="flex justify-end items-center gap-2">
+                    <!-- <p class="text-dark text-sm md:text-base opacity-70"><Icon name="ion:filterfilter-circle" size="20"/> Filter:</p> -->
+                    <select @change="handleChange"
+                        class="py-2 px-2 w-full max-w-40 min-h-8 rounded-md border border-grey cursor-pointer text-sm bg-grey">
+                        <option value="1" class="bg-grey text-dark p-2 m-2 text-sm font-sans">Highest to Lowest
+                        </option>
+                        <option value="2" class="bg-grey text-dark p-2 text-sm font-sans">Lowest to Highest
+                        </option>
+                    </select>
+                </div>
                 <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 auto-rows-auto gap-2 md:gap-4">
                     <ProductCard v-for="product in selectedProducts" :key="product.id" :id="product.id"
                         :title="product.title" :image="product.image" :category="product.category"
@@ -50,6 +61,7 @@
     const route = useRoute();
     const products = useProductState()
     const selectedCategory = ref<string>(route.query?.category?.toString() ?? 'All')
+    const selectedFilter = ref<string>("1")
     const selectedProducts = reactive({...products})
     const uniqueFilter = (items: any[], target:string) => {
         let uniqueMap = new Map()
@@ -60,14 +72,21 @@
     }
     const categories = uniqueFilter([...products.value], 'category')
     
-    definePageMeta({
-        name: "Shop"
-    })
+    const handleChange = (e: any) => {
+        selectedFilter.value = e.target.value
+    }
+    
     console.log({ routeQuery: route.query, routeParams: route.params })
     watchEffect(() => {
         selectedCategory.value
         if (selectedCategory.value === "All") selectedProducts.value = products.value
         else selectedProducts.value = products.value.filter(el => el.category.toLowerCase() === selectedCategory.value.toLowerCase())
+    })
+    watch([selectedFilter], ([filter]) => {
+        selectedProducts.value = selectedProducts.value.sort((a : ProductProps, b: ProductProps) => filter === "1" ? b.price - a.price : a.price - b.price)
+    })
+    definePageMeta({
+        name: "Shop"
     })
     useSeoMeta({
         title: `Karamlaza :: Shop`,
@@ -94,4 +113,5 @@
             }
         ]
     })
+
 </script>

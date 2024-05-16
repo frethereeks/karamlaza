@@ -1,0 +1,125 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  Admin
+  User
+}
+
+enum Status {
+  Pending
+  Active
+  Suspended
+}
+
+enum PostStatus {
+  Active
+  Disabled
+}
+
+enum HouseStatus {
+  Available
+  Unavailable
+  Delisted
+}
+
+model Blog {
+  id        String     @id @default(cuid())
+  title     String     @db.VarChar(100)
+  slug      String     @db.VarChar(200)
+  text      String     @db.LongText()
+  images    String     @db.LongText
+  category  String     @db.VarChar(100)
+  status    PostStatus @default(Active)
+  published Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+  author    User       @relation(fields: [authorId], references: [id])
+  authorId  String
+  Comment   Comment[]
+}
+
+model House {
+  id          String      @id @default(cuid())
+  title       String      @db.VarChar(100)
+  price       Int         @db.MediumInt()
+  inventory   Int         @db.Int
+  discount    Int?        @default(0)
+  description String      @db.Text
+  category    String      @db.VarChar(100)
+  featured    Boolean     @default(false)
+  image       String      @db.Text
+  status      HouseStatus @default(Available)
+  published   Boolean     @default(true)
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @default(now()) @updatedAt
+  owner       User        @relation(fields: [ownerId], references: [id])
+  ownerId     String
+}
+
+model Contact {
+  id        String   @id @default(cuid())
+  fullname  String   @db.VarChar(100)
+  email     String   @db.VarChar(100)
+  phone     String?  @db.VarChar(20)
+  message   String   @db.Text()
+  createdAt DateTime @default(now())
+  updatedAt DateTime @default(now()) @updatedAt
+}
+
+model Comment {
+  id        String     @id @default(cuid())
+  title     String     @db.VarChar(100)
+  slug      String     @db.VarChar(200)
+  text      String     @db.LongText()
+  status    PostStatus @default(Active)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+  user      User       @relation("comments", fields: [userId], references: [id])
+  userId    String
+  blog      Blog       @relation(fields: [blogId], references: [id])
+  blogId    String
+  Reply     Reply[]
+}
+
+model Reply {
+  id        String     @id @default(cuid())
+  title     String     @db.VarChar(100)
+  slug      String     @db.VarChar(200)
+  text      String     @db.LongText()
+  status    PostStatus @default(Active)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @default(now()) @updatedAt
+  user      User       @relation("replies", fields: [userId], references: [id])
+  userId    String
+  comment   Comment    @relation(fields: [commentId], references: [id])
+  commentId String
+}
+
+model User {
+  id        String    @id @default(cuid())
+  firstname String    @db.VarChar(50)
+  lastname  String    @db.VarChar(50)
+  email     String    @db.VarChar(100)
+  image     String    @db.LongText
+  Role      Role      @default(User)
+  Blog      Blog[]
+  Comment   Comment[] @relation("comments")
+  Reply     Reply[]   @relation("replies")
+  House     House[]
+  status    Status    @default(Pending)
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @default(now()) @updatedAt
+}

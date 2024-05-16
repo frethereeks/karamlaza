@@ -33,19 +33,23 @@
         </div>
         <!-- <div class="grid grid-cols-2 md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-4"> -->
         <div class="grid grid-cols-2 md:grid-cols-3 auto-rows-[200px] md:auto-rows-[300px] gap-2 md:gap-4">
-          <div class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm md:row-span-2">
+          <div
+            class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm md:row-span-2">
             <img src="@/assets/images/nova_naving_sidetables.jpg" alt="essence_accent_chair"
               class="object-cover object-left h-full w-full relative">
           </div>
-          <div class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm md:col-span-2">
+          <div
+            class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm md:col-span-2">
             <img src="@/assets/images/large_lagoon_lounge.jpg" alt="essence_accent_chair"
               class="object-cover object-center h-full w-full relative">
           </div>
-          <div class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm">
+          <div
+            class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm">
             <img src="@/assets/images/lagoon_patio_chair.jpg" alt="essence_accent_chair"
               class="object-cover object-center h-full w-full relative">
           </div>
-          <div class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm">
+          <div
+            class="relative before:absolute before:w-full before:h-full before:left-0 before:top-0 before:bg-gradient-to-t before:from-slate-600 before:via-transparent to-transparent flex-1 min-h-40 overflow-hidden rounded-sm">
             <img src="@/assets/images/white_accent_chair.jpg" alt="essence_accent_chair"
               class="object-cover object-center h-full w-full relative">
           </div>
@@ -92,12 +96,57 @@
       <aside class="bg-light-grey flex flex-col relative hover:-translate-y-3 overflow-hidden">
       </aside>
     </section>
+    <section class="bg-white py-20 px-4">
+      <div class="container mx-auto">
+        <Swiper :height="300" :modules="[SwiperAutoplay, SwiperEffectCreative]" :slides-per-view="1" :loop="true"
+          :effect="'creative'" :autoplay="{
+            delay: 8000,
+            disableOnInteraction: true
+          }" :creative-effect="{
+        prev: {
+          shadow: false,
+          translate: ['-20%', 0, -1]
+        },
+        next: {
+          translate: ['100%', 0, 0]
+        }
+      }">
+          <SwiperSlide v-for="(slide, idx) in slides" :key="idx"
+            :style="`background-color: ${slide.bg}; color: ${slide.color}`">
+            {{ idx }}
+          </SwiperSlide>
+
+          <!-- useSwiper() within a swiper instance -->
+          <SwiperControls />
+        </Swiper>
+        <h2>Swiper Card Effect</h2>
+        <Swiper class="swiper-cards" :width="240" :modules="[SwiperAutoplay, SwiperEffectCards]" :slides-per-view="1"
+          :loop="true" :effect="'cards'" :autoplay="{
+            delay: 8000,
+            disableOnInteraction: true
+          }">
+          <SwiperSlide v-for="(slide, idx) in slides" :key="idx"
+            :style="`background-color: ${slide.bg}; color: ${slide.color}`">
+            {{ idx }}
+          </SwiperSlide>
+        </Swiper>
+      </div>
+    </section>
   </main>
 </template>
 
 <script lang="ts" setup>
-
   const products = useProductState().value.filter(el => el.featured === true).slice(0,4)
+
+  const slides = ref(Array.from({ length: 10 }, () => {
+    const r = Math.floor(Math.random() * 256)
+    const g = Math.floor(Math.random() * 256)
+    const b = Math.floor(Math.random() * 256)
+    // Figure out contrast color for font
+    const contrast = r * 0.299 + g * 0.587 + b * 0.114 > 186 ? 'black' : 'white'
+
+    return { bg: `rgb(${r}, ${g}, ${b})`, color: contrast }
+  }))
   
   const approachList = ref<ApproachProp[]>([
     {
@@ -120,3 +169,31 @@
     name: "Home"
   })
 </script>
+
+<style scoped>
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+    height: 20vh;
+    font-size: 4rem;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .swiper-wrapper {
+    min-width: 100vh;
+    width: 100vh;
+  }
+
+  .swiper-cards {
+    width: 240px;
+    height: 240px;
+  }
+
+  .swiper-cards .swiper-slide {
+    border-radius: 6px;
+    border: 1px solid black;
+  }
+</style>

@@ -1,6 +1,6 @@
 <template>
     <main class="flex flex-col justify-between min-h-screen w-full">
-        <header class="relative p-4 bg-white">
+        <header class="sticky w-full top-0 left-0 p-4 bg-white">
             <div class="relative container mx-auto flex justify-between items-center bg-white">
                 <NuxtLink to='/'
                     class="text-primary text-2xl font-bold relative pl-6 before:bg-secondary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[14px] before:h-10 before:z-10 after:bg-primary after:absolute after:left-[4px] after:top-1/2 after:-translate-y-1/2 after:rotate-12 after:w-[14px] after:h-9">
@@ -61,7 +61,7 @@
                         class="relative w-8 h-8 bg-transparent hover:bg-backdrop cursor-pointer rounded-sm flex justify-center items-center">
                         <!-- <Icon name="ion:bag-handle-outline" size="20" /> -->
                         <span
-                            class="absolute -top-0 right-0 w-4 h-4 bg-red-500 text-backdrop text-xs rounded-full flex justify-center items-center">0</span>
+                            class="absolute -top-0 right-0 w-4 h-4 bg-red-500 text-backdrop text-xs rounded-full flex justify-center items-center">{{ cartState.contents.length }}</span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="1.2rem" height="1.2rem" viewBox="0 0 512 512">
                             <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                                 stroke-width="32"
@@ -106,7 +106,7 @@
 </template>
 
 <script lang="ts" setup>
-
+    const cartState = useCartState()
     const searchTerm = ref<string>(""), searchShow = ref<boolean>(false), cartShow = ref<boolean>(false), navShow = ref<boolean>(false)
     const navLinks = ref([
         {

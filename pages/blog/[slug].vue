@@ -75,21 +75,14 @@
 </template>
 
 <script lang="ts" setup>
-    const router = useRouter(), route = useRoute(), blogItems = useBlogState(), data = reactive<BlogItemProp>({ id: "", title: "", category: "", createdAt: "", images: [""], slug: "", text: "", author: { id: "", firstname: "", lastname: "", image: "" } }), relatedCategory = ref<string>('Popular');
-    let relatedPost = reactive<BlogItemProp[]>([])
+    const router = useRouter(), route = useRoute(), blogItems = useBlogState(), relatedCategory = ref<string>('Popular');
+    let data = reactive<BlogItemProp>({ id: "", title: "", category: "", createdAt: "", images: [""], slug: "", text: "", author: { id: "", firstname: "", lastname: "", image: "" } }), relatedPost = reactive<BlogItemProp[]>([])
 
     watchEffect(() => {
         route.params
         const currentPost = blogItems.value.find(el => el.slug.toLowerCase() === route.params.slug)
         if (currentPost) {
-            data.id = currentPost?.id
-            data.title = currentPost?.title
-            data.slug = currentPost?.slug
-            data.category = currentPost?.category
-            data.images = currentPost?.images
-            data.text = currentPost?.text
-            data.createdAt = currentPost?.createdAt
-            data.author = currentPost?.author
+            data = {...currentPost}
         }
         else router.push("/blog")
     })
