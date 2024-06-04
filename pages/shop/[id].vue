@@ -1,9 +1,9 @@
 <template>
   <main class="flex-1 flex flex-col">
     <BreadCrumb :extra="['/shop', 'Product', data.title]" :key="8250698" />
-    •
+    <!-- • -->
     <section class="py-10 px-4">
-      <div class="container mx-auto py-10 flex flex-col sm:flex-row">
+      <div class="container mx-auto py-10 flex flex-col sm:flex-row gap-6">
         <div class="flex-1 flex flex-col gap-4 lg:pr-8">
           <div class="min-h-56 h-72 md:h-full w-full relative rounded-md overflow-hidden bg-primary/20 py-20 group">
             <img :src="`/images/${data.image}`" alt="{{ data.title }}"
@@ -36,9 +36,12 @@
             style="line-height: 1.7;"
             class="article flex flex-col gap-4 text-dark/80 text-base lg:text-lg text-justify py-4"></article>
           <div class="divide-y divide-slate-300 w-max pb-4">
-            <p class="text-base py-1 md:text-lg text-dark/80 flex"><span class="w-28 flex">Weight:</span> 14.09kg</p>
-            <p class="text-base py-1 md:text-lg text-dark/80 flex"><span class="w-28 flex">Dimension:</span> 14.09kg</p>
-            <p class="text-base py-1 md:text-lg text-dark/80 flex"><span class="w-28 flex">Made in:</span> 14.09kg</p>
+            <p class="text-sm py-1 md:text-base text-dark/80 flex"><span class="w-28 flex">Weight:</span>
+              {{ data.weight }}kg</p>
+            <p class="text-sm py-1 md:text-base text-dark/80 flex"><span class="w-28 flex">Dimension:</span>
+              {{ data.dimension }}</p>
+            <p class="text-sm py-1 md:text-base text-dark/80 flex"><span class="w-28 flex">Made in:</span>
+              {{ data.country }}</p>
           </div>
           <div class="flex gap-2 md:gap-5">
             <div class="flex border-2 border-dark/20 rounded-md w-max overflow-hidden bg-white">
@@ -56,34 +59,65 @@
                 <Icon name="ion:plus" />
               </button>
             </div>
-            <button
+            <button @click="handleAddToCart(data.id)"
               class="flex-1 py-1 px-6 text-white cursor-pointer rounded-md text-base md:text-lg bg-dark hover:bg-dark/95">Add
-              to
-              Cart</button>
+              to Cart</button>
           </div>
         </div>
+      </div>
+    </section>
+    <section class="bg-white py-20 px-4">
+      <div class="container mx-auto">
+        <div class="flex-1 flex flex-col gap-1 py-4">
+          <h2 class="text-2xl md:text-3xl text-secondary font-semibold font-serif">Suggested Products</h2>
+          <p class="text-sm md:text-base text-dark/80">People who viewed this product also like the following</p>
+        </div>
+        <Swiper :height="300" :modules="[SwiperAutoplay]" 
+          :loop="true"
+          :space-between="20" 
+          :breakpoints="{ 300: {spaceBetween: 10, slidesPerView: 2}, 650: {spaceBetween: 20, slidesPerView: 3}, 850: {spaceBetween: 20, slidesPerView: 4} }" 
+          :autoplay="{
+            delay: 2000,
+            disableOnInteraction: true
+          }" :creative-effect="{
+            prev: {
+              shadow: false,
+              translate: ['-20%', 0, -1]
+            },
+            next: {
+              translate: ['100%', 0, 0]
+            }
+          }">
+          <SwiperSlide v-for="(product, idx) in relatedProducts.slice(3, 8)" :key="idx">
+            <ProductCard :key="product.id" :id="product.id" :title="product.title" :image="product.image"
+              :category="product.category" :price="product.price" :description="product.description" />
+          </SwiperSlide>
+          <!-- <SwiperControls /> -->
+        </Swiper>
       </div>
     </section>
   </main>
 </template>
 
 <script lang="ts" setup>
-  const router = useRouter(), route = useRoute(), productItem = useProductState(), relatedCategory = ref<string>('Popular');
-  let data = reactive<ProductProps>({ id: "", title: "", category: "", image: "", description: "", featured: false, inventory: 0, price: 0, rating: 0, reviews: 0 }), relatedProducts = reactive<ProductProps[]>([])
+  const router = useRouter(), route = useRoute(), productItem = useProductState(), cartItem = useCartState(), relatedCategory = ref<string>('Popular');
+  let data = reactive<ProductProps>({ id: "", title: "", category: "", image: "", description: "", featured: false, inventory: 0, price: 0, rating: 0, reviews: 0, weight: 0, dimension: "", country: "" }), relatedProducts = reactive<ProductProps[]>([])
+
+  const handleAddToCart = (id: string) => {
+
+  }
 
   watchEffect(() => {
     route.params
     const targetProduct = productItem.value.find(el => el.id === route.params.id)
     if (targetProduct) {
       data = { ...targetProduct }
+      relatedProducts = productItem.value.filter(el => el.id !== data.id)
+      // console.log({data, relatedProducts})
     }
     else router.push("/shop")
   })
 
-  watchEffect(() => {
-    relatedCategory.value
-    relatedProducts = productItem.value.filter(el => el.id !== data.id && el.category === data.category)
-  })
   useSeoMeta({
     title: `${data.title}` || 'Karamlaza Product',
     description: data.description,

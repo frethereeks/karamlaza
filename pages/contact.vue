@@ -62,7 +62,7 @@
     const handleSubmit = async () => {
         const payload = { fullname: fullname.value, email: email.value, message: message.value, }
         try {
-            const data = await $fetch("/api/contact/edit", {
+            const data = await $fetch("/api/contact/create", {
                 body: JSON.stringify(payload),
                 headers: {
                     "Content-Type": "application/json"

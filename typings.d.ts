@@ -30,6 +30,9 @@ type ProductProps = {
     inventory: number
     image: string
     rating: number
+    weight: number
+    dimension: string
+    country: string
     reviews: number
 }
 

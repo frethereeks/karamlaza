@@ -1,12 +1,12 @@
 <template>
     <main class="flex flex-col justify-between min-h-screen w-full">
-        <header class="sticky w-full top-0 left-0 p-4 bg-white">
+        <header class="sticky z-[100] w-full top-0 left-0 p-4 bg-white">
             <div class="relative container mx-auto flex justify-between items-center bg-white">
                 <NuxtLink to='/'
                     class="text-primary text-2xl font-bold relative pl-6 before:bg-secondary before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:w-[14px] before:h-10 before:z-10 after:bg-primary after:absolute after:left-[4px] after:top-1/2 after:-translate-y-1/2 after:rotate-12 after:w-[14px] after:h-9">
                     Karam<span class="text-secondary">Laza</span>
                 </NuxtLink>
-                <nav class="flex-1 fixed z-50 w-full h-screen md:w-max md:h-max md:static top-0 left-0 bg-primary md:bg-transparent flex-col md:flex-row justify-center md:justify-end"
+                <nav class="flex-1 fixed z-[100] w-full h-screen md:w-max md:h-max md:static top-0 left-0 bg-primary md:bg-transparent flex-col md:flex-row justify-center md:justify-end"
                     :class="navShow ? 'flex' : 'hidden md:flex'">
                     <div @click="navShow = !navShow"
                         class="w-5 h-5 rounded-full flex md:hidden justify-center items-center bg-slate-50 text-primary cursor-pointer font-extralight fixed right-2 top-2">

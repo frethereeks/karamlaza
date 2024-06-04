@@ -96,47 +96,11 @@
       <aside class="bg-light-grey flex flex-col relative hover:-translate-y-3 overflow-hidden">
       </aside>
     </section>
-    <section class="bg-white py-20 px-4">
-      <div class="container mx-auto">
-        <Swiper :height="300" :modules="[SwiperAutoplay, SwiperEffectCreative]" :slides-per-view="1" :loop="true"
-          :effect="'creative'" :autoplay="{
-            delay: 8000,
-            disableOnInteraction: true
-          }" :creative-effect="{
-        prev: {
-          shadow: false,
-          translate: ['-20%', 0, -1]
-        },
-        next: {
-          translate: ['100%', 0, 0]
-        }
-      }">
-          <SwiperSlide v-for="(slide, idx) in slides" :key="idx"
-            :style="`background-color: ${slide.bg}; color: ${slide.color}`">
-            {{ idx }}
-          </SwiperSlide>
-
-          <!-- useSwiper() within a swiper instance -->
-          <SwiperControls />
-        </Swiper>
-        <h2>Swiper Card Effect</h2>
-        <Swiper class="swiper-cards" :width="240" :modules="[SwiperAutoplay, SwiperEffectCards]" :slides-per-view="1"
-          :loop="true" :effect="'cards'" :autoplay="{
-            delay: 8000,
-            disableOnInteraction: true
-          }">
-          <SwiperSlide v-for="(slide, idx) in slides" :key="idx"
-            :style="`background-color: ${slide.bg}; color: ${slide.color}`">
-            {{ idx }}
-          </SwiperSlide>
-        </Swiper>
-      </div>
-    </section>
   </main>
 </template>
 
 <script lang="ts" setup>
-  const products = useProductState().value.filter(el => el.featured === true).slice(0,4)
+  const products = useProductState().value.filter(el => el.featured === true).slice(0, 4)
 
   const slides = ref(Array.from({ length: 10 }, () => {
     const r = Math.floor(Math.random() * 256)
@@ -147,7 +111,7 @@
 
     return { bg: `rgb(${r}, ${g}, ${b})`, color: contrast }
   }))
-  
+
   const approachList = ref<ApproachProp[]>([
     {
       id: "8025620",
